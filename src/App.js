@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "../src/App.css";
+import Route from "./Routes/Routes";
+import { BrowserRouter, Link } from "react-router-dom";
+import Routes from "./Routes/Routes";
+import Dateuser, { contextUSer } from "./Context/Dateuser";
+import { useContext, useEffect } from "react";
+import Header from "./Components/Header";
+import Contenedor from "./Components/Contenedor";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Dateuser value>
+        <Contenedor />
+      </Dateuser>
+    </BrowserRouter>
   );
 }
 
