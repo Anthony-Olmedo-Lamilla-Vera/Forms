@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { contextUSer } from "../Context/Dateuser";
 import { useHistory } from "react-router-dom";
+import { InicioUrl } from "../Variables";
 
 function Header() {
   const { DatesUser, User, Token, setToken, setUser, setDatesUser } =
@@ -14,26 +15,26 @@ function Header() {
   }, []);
   const cerrarSession = () => {
     window.localStorage.removeItem("User");
-    History.push("/login");
-    window.location.reload("/login");
+    History.push(InicioUrl + "/login");
+    window.location.reload(InicioUrl + "/login");
   };
   return (
     <header className="App-header">
       <ul className="nav nav-pills nav-fill">
         <li className="nav-item">
-          <Link to="/" className="nav-link " aria-current="page">
+          <Link to={InicioUrl + "/"} className="nav-link " aria-current="page">
             Home
           </Link>
         </li>
         {Token === null && (
           <>
             <li className="nav-item">
-              <Link to="/login" className="nav-link">
+              <Link to={InicioUrl + "/login"} className="nav-link">
                 Login
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/register" className="nav-link">
+              <Link to={InicioUrl + "/Register"} className="nav-link">
                 Register
               </Link>
             </li>

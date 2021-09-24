@@ -36,15 +36,17 @@ body {
 }
 .MsgLogin {
   text-align: center;
-  width: 50%;
-  margin: auto;
+  width: 100%;
+  margin: 0;
 }
 .MsgLogin a {
   text-decoration: none;
   border: 2px solid red;
   background: transparent;
-  border-radius: 15px;
-  padding: 8px 40px;
+  border-radius: 0.9375rem;
+  font-size: 12px;
+  padding: 8px 15px;
+
   color: rgb(0, 0, 0);
 }
 .MsgLogin a:hover {

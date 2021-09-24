@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import Forms from "../Components/Forms";
 import axios from "axios";
-import { UrlString } from "../Variables";
+import { InicioUrl, UrlString } from "../Variables";
 import { useHistory } from "react-router-dom";
 import { contextUSer } from "../Context/Dateuser";
 function Register() {
   const [Nombre, setNombre] = useState("");
   const [Correo, setCorreo] = useState("");
   const [Contraseña, setContraseña] = useState("");
-  const [CaptureErr, setCaptureErr] = useState(false);
+  const [CaptureErr, setCaptureErr] = useState(null);
   const [Registrado, setRegistrado] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const { DatesUser, User, setUser, setDatesUser } = useContext(contextUSer);
   const history = useHistory();
 
   async function Registro(e) {
@@ -26,24 +25,20 @@ function Register() {
         Contraseña: Contraseña,
       })
       .then(function (response) {
+        setLoading(false);
         setCaptureErr(false);
-        setUser(true);
-
         setContraseña("");
         setCorreo("");
         setNombre("");
         setRegistrado(true);
         Date.push(response.data);
-
         window.localStorage.setItem("User", JSON.stringify(Date[0]));
-        history.push("/");
-        window.location.reload("/");
+        history.push(InicioUrl + "/");
+        window.location.reload();
       })
       .catch(function (error) {
-        setUser(false);
-        setRegistrado(false);
-        setCaptureErr(true);
         console.log(CaptureErr);
+        setRegistrado(false);
       });
 
     setLoading(false);
@@ -94,7 +89,6 @@ function Register() {
       )}
 
       {Registrado ? <h4>Registrado Correctamente </h4> : ""}
-      {CaptureErr ? <h4>Errrorrr </h4> : ""}
     </div>
   );
 }
